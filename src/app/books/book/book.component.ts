@@ -12,6 +12,7 @@ export class BookComponent implements OnInit{
 
   @Input() book:Book = {} as Book;
   // @Output() bookEmitter = new EventEmitter<Book>();
+  isInCart:boolean = false;
 
   constructor(private cartService:CartService) { }
 
@@ -22,7 +23,12 @@ export class BookComponent implements OnInit{
   addToCart(){
     this.cartService.add(this.book);
     // this.bookEmitter.emit(this.book);
+    this.isInCart = true;
+  }
 
+  removeFromCart(){
+    this.isInCart = false;
+    this.cartService.remove(this.book);
   }
 
 }
